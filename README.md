@@ -49,6 +49,31 @@ Opening notes file in Sublime Text at line 59776...
 Bye from "/Users/justin/Notes/Search-Notes-File/main.py" !
 ```
 
+## Installation
+
+1. Download:
+
+    % git clone git@github.com:justinpearson/Search-Notes-File.git
+
+2. Install dependencies (`more_itertools`):
+
+    % cd Search-Notes-File
+    % python3 -m pip install -r requirements.txt
+
+3. (Optional) Run tests:
+
+    % pytest
+
+4. Run, pointing to your own notes file and your own text editor:
+
+    % python3 main.py --sublime-exe /your/own/text-editor-exe --notes-file /your/own/notes-file.txt foo bar
+
+5. (Optional) Alias ^-- this command in your shell for convenience:
+
+    ```
+    % cat 'alias ns="python3 /your/downloads/Search-Notes-File/main.py --sublime-exe /your/own/text-editor-exe --notes-file /your/own/notes-file.txt"' >> ~/.zshrc
+    ```
+
 ## Description
 
 You can search the entries' titles and bodies. Title searches are most common, so they are given as the first positional args, eg,
