@@ -54,10 +54,10 @@ def test_search_is_case_insensitive(entry_apples):
 	assert not entry_matchesQ(entry_apples, b)
 
 
-def test_regex(entry_apples):
+def test_regex(entry_apples, entry_book):
 	a = DummyArgs( title_search_strs = [r'\bof\b'] )
 	assert entry_matchesQ(entry_apples, a)
-	assert entry_matchesQ(entry_apples, a)
+	assert entry_matchesQ(entry_book, a)
 
 
 def test_title_strings(entry_apples, entry_book):
