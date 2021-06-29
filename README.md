@@ -1,5 +1,13 @@
 # Search-Notes-File
 
+- [Summary](#summary)
+- [Installation](#installation)
+- [Description](#description)
+- [Usage](#usage)
+- [Additional notes](#additional-notes)
+
+## Summary
+
 This simple program lets me search my personal notes file.
 
 My notes file (notes.txt) has a lot of entries. Each entry has a date, a title line, and several body lines:
