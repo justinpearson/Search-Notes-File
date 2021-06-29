@@ -61,17 +61,17 @@ def test_regex(entry_apples, entry_book):
 
 
 def test_title_strings(entry_apples, entry_book):
-	a = DummyArgs( title_search_strs = ['apple', 'list'] )
+	a = DummyArgs( title_search_strs = ['apple', 'list of'] )
 	assert entry_matchesQ(entry_apples, a)
 	assert not entry_matchesQ(entry_book, a)
 
-	a = DummyArgs( title_search_strs = ['list'] )
+	a = DummyArgs( title_search_strs = ['list of'] )
 	assert entry_matchesQ(entry_apples, a)
 	assert entry_matchesQ(entry_book, a)
 
 
 def test_match_ANY_title(entry_apples, entry_book):
-	a = DummyArgs( title_search_strs = ['apple', 'list']
+	a = DummyArgs( title_search_strs = ['apple', 'list of']
 				 , match_ANY_title = True
 				 )
 	assert entry_matchesQ(entry_apples, a)
