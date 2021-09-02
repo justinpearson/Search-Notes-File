@@ -35,6 +35,9 @@ def main():
 
 	n = results[pick_idx_of_result_to_open(len(results))]['line number']
 
+	# TODO: FIX THIS HACK: LINE NUMBERS OFF BC FILE STARTS WITH A NON-ENTRY
+	n += 3
+
 	# Open chosen result:
 	print(f'Opening notes file in Sublime Text at line {n}...')
 	from subprocess import call
