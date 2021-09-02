@@ -90,20 +90,27 @@ def parse_notes_file_into_entries(notes_file):
 
 	# An entry begins with a line that has the entry's date:
 
-	date_patt = re.compile(r'^~?~?\d{4}[-.]?\d{2}[-.]?\d{2}\W*$')
-	# Explanation: 
-	#   ^ beginning of line
-	#   ~?~? my dates used to be like ~~2015.03.18, but later I left off the ~~
-	#   [-.]? I've used 20150318 2015.03.18 2015-03-18
-	#   \W*  only non-word chars on the rest of the line, plz (to catch ONLY lines with this type of date)
-	#   $ end of line.
+	# date_patt = re.compile(r'^~?~?\d{4}[-.]?\d{2}[-.]?\d{2}\W*$')
+
+	date_patt = re.compile(r'''
+		^		# beginning of line
+		~?~?	# my dates used to be like ~~2015.03.18, but later I left off the ~~
+		\d{4}	#
+		[-.]?	# I've used 20150318 2015.03.18 2015-03-18
+		\d{2}	#
+		[-.]?	#
+		\d{2}	#
+		\W*		# only non-word chars on the rest of the line, plz (to catch ONLY lines with this type of date)
+		$		# end of line.
+		''',
+		flags=re.VERBOSE)
 
 	tprint = TimePrinter()
 	lines = notes_file.read().splitlines()
 	tprint.p(f'Read notes file: {len(lines)} lines.')
 
 	# Split when you see a line that's just a date:
-	entry_line_lists = list(split_before(lines, lambda l: date_patt.match(l)))
+	entry_line_lists = list(split_before(lines, date_patt.match))
 
 	# If the notes file started with some random text (not a date),
 	# the first entry_line_list will not actually be a real entry. Delete it.
@@ -150,7 +157,7 @@ def entry_matchesQ(entry, args):
 
 	# The entry matches if its title matches AND its body matches;
 	# the user can pass args.match_title_OR_body to use OR instead of AND.
-	return title_matchesQ or body_matchesQ if args.match_title_OR_body else title_matchesQ and body_matchesQ
+	return (title_matchesQ or body_matchesQ) if args.match_title_OR_body else (title_matchesQ and body_matchesQ)
 
 ############################################
 # Ask user which entry to open
